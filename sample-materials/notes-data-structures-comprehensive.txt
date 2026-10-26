@@ -1,0 +1,168 @@
+SPHOORTHY ENGINEERING COLLEGE
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+LECTURE STUDY NOTES: DATA STRUCTURES & ALGORITHMS
+SUBJECT CODE: CS301PC | REGULATION: R22
+
+================================================================================
+SECTION 1: LINEAR DATA STRUCTURES - ARRAYS AND LINKED LISTS
+================================================================================
+[Document: Notes_Data_Structures_CS301PC | Page: 3 | Section: 1.1 Array Fundamentals]
+An array is a linear collection of homogeneous data elements stored in contiguous memory locations. The elements can be accessed directly using an index in constant time O(1).
+In Row-Major order for a 2D array A[M][N], the address of element A[i][j] with base address B and element size w is calculated as:
+Address(A[i][j]) = B + w * (i * N + j).
+In Column-Major order, the address is calculated as:
+Address(A[i][j]) = B + w * (j * M + i).
+The major limitation of static arrays is their fixed size determined at compile time, leading to either memory wastage or buffer overflow. Dynamic arrays mitigate this by doubling capacity when full, amortizing insertion time to O(1).
+
+[Document: Notes_Data_Structures_CS301PC | Page: 8 | Section: 1.2 Singly Linked Lists]
+A Singly Linked List is a dynamic linear data structure composed of nodes. Each node consists of two parts: data field and a pointer (next) holding the memory address of the succeeding node.
+Unlike arrays, linked lists do not require contiguous memory allocation.
+- Insertion at beginning: Requires updating the new node's next pointer to point to current head, and updating head to the new node. Time complexity is O(1).
+- Insertion at end: Requires traversing from head to the last node whose next is NULL, then setting last->next = new_node. Time complexity is O(n) without tail pointer, or O(1) with a tail pointer.
+- Deletion of a given key: Requires tracking previous pointer and current pointer. When key is located, prev->next = current->next and free(current). Time complexity is O(n).
+- Traversal & Search: Sequential access requiring O(n) time. Random access is not possible because nodes are scattered in heap memory.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 14 | Section: 1.3 Doubly and Circular Linked Lists]
+A Doubly Linked List (DLL) contains nodes with three fields: data, prev pointer, and next pointer.
+Advantage: Allows bidirectional traversal (forward and backward) and deletion of a node in O(1) time if a pointer to that node is already provided, because prev->next = next and next->prev = prev.
+Disadvantage: Extra memory overhead for the backward pointer and increased pointer manipulation during insertions and deletions.
+A Circular Linked List (CLL) is one where the last node's next pointer does not point to NULL; instead, it points back to the first node (head).
+Circular linked lists are extensively used in operating systems for round-robin CPU scheduling where processes are allocated fixed time slices in cyclic order.
+
+================================================================================
+SECTION 2: STACKS AND QUEUES
+================================================================================
+[Document: Notes_Data_Structures_CS301PC | Page: 22 | Section: 2.1 Stack Architecture and Operations]
+A Stack is a linear data structure that operates under the LIFO (Last In First Out) principle. The element inserted last is the first element to be removed. All insertions (push) and deletions (pop) occur at a single end termed 'Top'.
+Primary operations:
+- Push(x): Increments top pointer and places element x. If top == MAX - 1, Stack Overflow occurs. Time complexity O(1).
+- Pop(): Removes and returns the element at top, then decrements top. If top == -1, Stack Underflow occurs. Time complexity O(1).
+- Peek(): Returns value at top without removing it. Time complexity O(1).
+In recursion, the system runtime maintains a Call Stack where activation records (stack frames) containing return addresses, parameters, and local variables are pushed upon function calls and popped upon return.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 28 | Section: 2.2 Expression Parsing and Evaluation]
+Stack applications include arithmetic expression conversion and evaluation:
+1. Infix notation: Operator is placed between operands, e.g., A + B.
+2. Postfix notation (Reverse Polish Notation): Operator follows its operands, e.g., A B +.
+3. Prefix notation (Polish Notation): Operator precedes its operands, e.g., + A B.
+Postfix evaluation algorithm:
+Scan the postfix token sequence from left to right.
+If the token is an operand, push it onto the stack.
+If the token is an operator (e.g., +, -, *, /), pop two operands: operand2 = pop(), operand1 = pop(). Apply operator: result = operand1 (operator) operand2, and push result back to stack.
+When the expression terminates, the final value remaining on the stack is the expression result. Time complexity is O(n).
+
+[Document: Notes_Data_Structures_CS301PC | Page: 34 | Section: 2.3 Queue Data Structures]
+A Queue is a linear data structure governed by FIFO (First In First Out) discipline. Insertions (enqueue) occur at the Rear end, while deletions (dequeue) occur at the Front end.
+Boundary problem in Linear Queue: After sequential insertions and deletions, Rear may reach MAX - 1 while front > 0, falsely reporting Queue Overflow even though empty slots exist at the front.
+Solution - Circular Queue:
+A Circular Queue connects the last position back to the first position using modulo arithmetic:
+- Enqueue: rear = (rear + 1) % CAPACITY. If (rear + 1) % CAPACITY == front, Queue is Full.
+- Dequeue: front = (front + 1) % CAPACITY. If front == -1, Queue is Empty.
+Deque (Double Ended Queue) allows insertion and deletion at both front and rear ends.
+Priority Queue assigns priority to each element; elements with higher priority are dequeued before lower priority elements, typically implemented efficiently via binary heaps with O(log n) insertion and deletion.
+
+================================================================================
+SECTION 3: TREES AND BALANCED SEARCH TREES
+================================================================================
+[Document: Notes_Data_Structures_CS301PC | Page: 45 | Section: 3.1 Binary Tree Properties and Traversals]
+A Binary Tree is a hierarchical structure where each node has at most two children: left child and right child.
+Key properties:
+- The maximum number of nodes at level i (root at level 0) is 2^i.
+- The maximum number of nodes in a binary tree of height h is 2^(h+1) - 1.
+- In any non-empty binary tree with n0 leaf nodes and n2 nodes of degree 2: n0 = n2 + 1.
+Traversal algorithms:
+1. Pre-order Traversal: Visit Root, Traverse Left subtree, Traverse Right subtree (V L R).
+2. In-order Traversal: Traverse Left subtree, Visit Root, Traverse Right subtree (L V R). Important note: In-order traversal of a valid Binary Search Tree generates elements in strictly ascending sorted order.
+3. Post-order Traversal: Traverse Left subtree, Traverse Right subtree, Visit Root (L R V). Useful for deleting trees and postfix expression tree evaluation.
+4. Level-order Traversal: Breadth-first traversal visiting nodes level by level from top to bottom, implemented using a FIFO queue.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 52 | Section: 3.2 Binary Search Trees (BST)]
+A Binary Search Tree (BST) is a binary tree satisfying the BST invariant:
+For every node X:
+- All keys in the left subtree of X are strictly smaller than key(X).
+- All keys in the right subtree of X are strictly greater than key(X).
+- Left and right subtrees must also be valid BSTs.
+Performance:
+- Average case time complexity for Search, Insertion, and Deletion is O(log n).
+- Worst-case time complexity occurs when keys are inserted in sorted or reverse sorted order, resulting in a skewed degenerate tree with height h = n, degrading operations to O(n).
+Node Deletion cases in BST:
+Case 1: Node is a leaf (zero children) -> directly remove node and set parent pointer to NULL.
+Case 2: Node has one child -> splice out node by linking parent directly to child.
+Case 3: Node has two children -> replace node's key with its in-order successor (minimum value in right subtree) or in-order predecessor (maximum value in left subtree), then recursively delete that successor/predecessor node.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 61 | Section: 3.3 AVL Balanced Trees]
+An AVL Tree (Adelson-Velsky and Landis) is a self-balancing binary search tree.
+Balance Factor (BF) definition:
+BF(node) = Height(Left Subtree) - Height(Right Subtree).
+For an AVL tree to remain valid, every node must have BF in {-1, 0, +1}.
+When an insertion causes BF to become +2 or -2, balancing is restored using rotations:
+1. LL Rotation (Single Right Rotation): Used when insertion occurs in left child of left subtree (BF = +2, left child BF = +1).
+2. RR Rotation (Single Left Rotation): Used when insertion occurs in right child of right subtree (BF = -2, right child BF = -1).
+3. LR Rotation (Double Rotation: Left then Right): Used when insertion occurs in right child of left subtree (BF = +2, left child BF = -1).
+4. RL Rotation (Double Rotation: Right then Left): Used when insertion occurs in left child of right subtree (BF = -2, right child BF = +1).
+Due to mandatory balancing, height of AVL tree with n nodes is strictly bounded by 1.44 * log2(n), guaranteeing worst-case O(log n) time for search, insert, and delete.
+
+================================================================================
+SECTION 4: GRAPHS AND SHORTEST PATHS
+================================================================================
+[Document: Notes_Data_Structures_CS301PC | Page: 72 | Section: 4.1 Graph Representations and Traversals]
+A Graph G = (V, E) consists of a set of vertices V and edges E connecting pairs of vertices.
+Representations:
+1. Adjacency Matrix: 2D array of size V x V where matrix[u][v] = 1 (or weight) if edge (u, v) exists, 0 otherwise. Space complexity is O(V^2). Efficient for dense graphs and checking edge existence in O(1).
+2. Adjacency List: Array of linked lists of size V, where list[u] stores all adjacent vertices of u. Space complexity is O(V + E). Preferred for sparse graphs where E << V^2.
+Traversals:
+- Breadth First Search (BFS): Explores vertex neighbors level by level using a Queue and a visited boolean array. Time complexity O(V + E). Computes shortest path in unweighted graphs.
+- Depth First Search (DFS): Explores as deep as possible along each branch before backtracking, implemented using recursion or explicit Stack. Time complexity O(V + E). Applications include topological sorting and detecting cycles.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 80 | Section: 4.2 Minimum Spanning Trees (MST)]
+A Spanning Tree of a connected, undirected graph G is a subgraph that is a tree and includes all vertices of G. A Minimum Spanning Tree (MST) minimizes the sum of edge weights. For V vertices, any MST contains exactly V - 1 edges.
+1. Prim's Algorithm:
+- Greedy vertex-based algorithm.
+- Begins with an arbitrary root vertex, continuously grows the tree by adding the minimum-weight edge connecting a tree vertex to a non-tree vertex.
+- Time complexity: O(V^2) with adjacency matrix, or O(E log V) using adjacency list with a binary min-heap / priority queue.
+2. Kruskal's Algorithm:
+- Greedy edge-based algorithm.
+- Sorts all edges in non-decreasing order of weights.
+- Iteratively picks the smallest edge; if it does not form a cycle with already chosen edges, it is added to the MST.
+- Cycle detection is performed efficiently using Disjoint Set Union (DSU) with Find and Union operations (Union by Rank and Path Compression).
+- Time complexity: O(E log E) or O(E log V) dominated by edge sorting.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 89 | Section: 4.3 Dijkstra's Shortest Path Algorithm]
+Dijkstra's Algorithm solves the Single Source Shortest Path (SSSP) problem on weighted graphs with non-negative edge weights.
+Core logic:
+Maintain a distance array dist[] initialized to infinity for all vertices, dist[source] = 0.
+Maintain a set of visited vertices.
+At each step, select the unvisited vertex u with minimum dist[u].
+Relax all outgoing edges (u, v) with weight w:
+If dist[u] + w < dist[v], then dist[v] = dist[u] + w.
+Mark u as visited.
+Crucial limitation: Dijkstra's algorithm fails or gives incorrect results if the graph contains negative weight edges, because greedy choice assumes a visited vertex's shortest distance cannot be reduced further. For graphs with negative weights, the Bellman-Ford algorithm must be used.
+Complexity: O((V + E) log V) with min-heap.
+
+================================================================================
+SECTION 5: SORTING, SEARCHING AND HASHING
+================================================================================
+[Document: Notes_Data_Structures_CS301PC | Page: 98 | Section: 5.1 Sorting Algorithms Comparison]
+Comparison of classical sorting algorithms:
+1. Bubble Sort: Repeatedly swaps adjacent out-of-order elements. Worst/Average: O(n^2), Best: O(n) with swapped flag, Space: O(1). Stable.
+2. Insertion Sort: Inserts each element into its proper sorted position among previously sorted elements. Worst/Average: O(n^2), Best: O(n) for nearly sorted inputs, Space: O(1). Stable.
+3. Selection Sort: Finds minimum element in unsorted portion and swaps with first unsorted element. Always O(n^2) comparisons regardless of input state. Space: O(1). Not stable in standard array form.
+4. Merge Sort: Divide and Conquer. Divides array into two halves, recursively sorts them, and merges the sorted halves. Time complexity is strictly O(n log n) in all cases (best, average, worst). Auxiliary space complexity is O(n) for merge buffers. Highly stable.
+5. Quick Sort: Selects a pivot element, partitions array such that elements smaller than pivot are on left and larger on right, then recursively sorts partitions.
+Average time complexity: O(n log n).
+Worst case time complexity: O(n^2), which occurs when the pivot is consistently the smallest or largest element (e.g., already sorted array with first or last element as pivot). Randomized pivot or Median-of-Three selection avoids worst case in practice. In-place with O(log n) stack space.
+
+[Document: Notes_Data_Structures_CS301PC | Page: 110 | Section: 5.2 Hashing and Collision Resolution]
+Hashing maps large keys to finite table slots via a Hash Function h(key).
+A collision occurs when two distinct keys k1 != k2 produce the same hash value h(k1) == h(k2).
+Collision Resolution Techniques:
+1. Separate Chaining (Open Hashing):
+Each table slot points to a linked list of records that hash to the same index.
+Advantages: Simple, table never fills up, handles high load factors gracefully.
+Disadvantage: Pointer memory overhead, poor cache locality.
+2. Open Addressing (Closed Hashing):
+All records are stored directly within the hash table array. When a collision occurs, alternative slots are probed systematically:
+- Linear Probing: Probe sequence is (h(k) + i) % TableSize for i = 0, 1, 2... Suffers from Primary Clustering (continuous blocks of occupied slots forming, slowing down lookups).
+- Quadratic Probing: Probe sequence is (h(k) + c1*i + c2*i^2) % TableSize. Eliminates primary clustering but can suffer from Secondary Clustering.
+- Double Hashing: Uses a secondary hash function h2(k): Probe sequence is (h1(k) + i * h2(k)) % TableSize. Requires h2(k) to be relatively prime to TableSize. Minimizes clustering effectively.
+Load Factor lambda = n / m (where n is number of stored keys, m is table size). In Open Addressing, lambda must remain strictly < 1.0; rehashing is typically triggered when lambda >= 0.7.

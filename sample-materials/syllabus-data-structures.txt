@@ -1,0 +1,46 @@
+SPHOORTHY ENGINEERING COLLEGE
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+COURSE SYLLABUS: DATA STRUCTURES & ALGORITHMS (CS301PC)
+ACADEMIC YEAR 2025-2026 | B.TECH II YEAR I SEMESTER
+
+COURSE OBJECTIVES:
+1. Understand basic data structures including arrays, linked lists, stacks, and queues.
+2. Explore non-linear data structures such as trees, binary search trees, and graphs.
+3. Master algorithm design paradigms including sorting and searching techniques.
+4. Analyze time and space complexity using Asymptotic notations.
+
+UNIT I: LINEAR DATA STRUCTURES - ARRAYS AND LINKED LISTS
+- Introduction to Data Structures: Primitive vs Non-primitive, Linear vs Non-linear.
+- Asymptotic Notations: Big O, Omega, Theta notations and complexity analysis.
+- Arrays: Single and Multi-dimensional arrays, Memory representation (Row-major and Column-major order).
+- Singly Linked Lists: Node structure, Dynamic memory allocation, Insertion at beginning, middle, and end, Deletion operations, Traversal.
+- Doubly Linked Lists: Two-way traversal, Node definition with prev and next pointers, Insertion and Deletion.
+- Circular Linked Lists: Structure, Boundary conditions, Applications in round-robin CPU scheduling.
+
+UNIT II: STACKS AND QUEUES
+- Stacks: Abstract Data Type (ADT), LIFO principle, Array implementation and Linked List implementation.
+- Stack Operations: Push, Pop, Peek, IsEmpty, IsFull, Overflow and Underflow conditions.
+- Applications of Stacks: Infix to Postfix conversion, Evaluation of Postfix expressions, Balanced parenthesis verification, Function call call-stack simulation.
+- Queues: Abstract Data Type (ADT), FIFO principle, Array implementation and Linked List implementation.
+- Queue Variations: Linear Queue and boundary problem, Circular Queue implementation using modulo arithmetic, Double-Ended Queue (Deque), Priority Queue with heap representation.
+
+UNIT III: NON-LINEAR DATA STRUCTURES - TREES
+- Tree Terminology: Root, Parent, Child, Siblings, Leaf node, Depth, Height, Degree of a tree.
+- Binary Trees: Types (Full, Complete, Perfect, Degenerate), Array and Pointer representations.
+- Tree Traversals: In-order (Left-Root-Right), Pre-order (Root-Left-Right), Post-order (Left-Right-Root), Level-order traversal.
+- Binary Search Trees (BST): Definition, BST property, Search operation (O(h)), Insertion of elements, Deletion of nodes (leaf, single child, two children using in-order successor/predecessor).
+- Balanced Trees: Introduction to AVL Trees, Balance factor calculation, Rotations (LL, RR, LR, RL) for balancing.
+
+UNIT IV: GRAPHS AND SHORTEST PATHS
+- Graph Terminology: Directed vs Undirected graphs, Weighted vs Unweighted graphs, Degree, Path, Cycle, Connected components.
+- Graph Representations: Adjacency Matrix (space complexity O(V^2)) and Adjacency List (space complexity O(V+E)).
+- Graph Traversals: Breadth First Search (BFS) using queue, Depth First Search (DFS) using recursion or stack.
+- Minimum Spanning Trees (MST): Prim's Algorithm (greedy vertex-based approach), Kruskal's Algorithm (greedy edge-based approach using Disjoint Set Union).
+- Shortest Path Algorithms: Dijkstra's Algorithm for single-source shortest path with non-negative edge weights.
+
+UNIT V: SORTING, SEARCHING AND HASHING
+- Searching Techniques: Linear Search (O(n)), Binary Search on sorted arrays (O(log n)), Divide and Conquer analysis.
+- Comparison Sorting Algorithms: Bubble Sort (O(n^2)), Insertion Sort (O(n^2) worst, O(n) best for nearly sorted data), Selection Sort (O(n^2)).
+- Advanced Sorting: Quick Sort (Partitioning, Pivot selection, O(n log n) average, O(n^2) worst case), Merge Sort (Divide, Conquer, Combine, Stable sort with O(n log n) time and O(n) auxiliary space).
+- Hashing & Hash Tables: Hash functions (Division method, Mid-square method, Multiplication method), Load factor.
+- Collision Resolution Techniques: Separate Chaining (Open Hashing using linked lists) and Open Addressing (Closed Hashing using Linear Probing, Quadratic Probing, Double Hashing).
