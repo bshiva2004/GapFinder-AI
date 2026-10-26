@@ -166,3 +166,4 @@ All records are stored directly within the hash table array. When a collision oc
 - Quadratic Probing: Probe sequence is (h(k) + c1*i + c2*i^2) % TableSize. Eliminates primary clustering but can suffer from Secondary Clustering.
 - Double Hashing: Uses a secondary hash function h2(k): Probe sequence is (h1(k) + i * h2(k)) % TableSize. Requires h2(k) to be relatively prime to TableSize. Minimizes clustering effectively.
 Load Factor lambda = n / m (where n is number of stored keys, m is table size). In Open Addressing, lambda must remain strictly < 1.0; rehashing is typically triggered when lambda >= 0.7.
+

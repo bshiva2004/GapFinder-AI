@@ -44,3 +44,4 @@ UNIT V: SORTING, SEARCHING AND HASHING
 - Advanced Sorting: Quick Sort (Partitioning, Pivot selection, O(n log n) average, O(n^2) worst case), Merge Sort (Divide, Conquer, Combine, Stable sort with O(n log n) time and O(n) auxiliary space).
 - Hashing & Hash Tables: Hash functions (Division method, Mid-square method, Multiplication method), Load factor.
 - Collision Resolution Techniques: Separate Chaining (Open Hashing using linked lists) and Open Addressing (Closed Hashing using Linear Probing, Quadratic Probing, Double Hashing).
+
